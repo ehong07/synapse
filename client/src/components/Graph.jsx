@@ -1,4 +1,5 @@
 import React from 'react';
+import {BarChart} from 'react-easy-chart';
 
 class Graph extends React.Component {
   constructor(props) {
@@ -10,7 +11,20 @@ class Graph extends React.Component {
 
   render() {
     return (
-      <div>Graph in the building</div>
+      <div>
+        <BarChart
+          colorBars 
+          data={[
+            {x: 'A', y: 20},
+            {x: 'B', y: 30},
+            {x: 'C', y: 40},
+            {x: 'D', y: 20},
+            {x: 'E', y: 40},
+            {x: 'F', y: 25},
+            {x: 'G', y: 5}
+          ]}
+        />
+      </div>
     )
   }
 }

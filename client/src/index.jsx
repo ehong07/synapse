@@ -33,11 +33,11 @@ class App extends React.Component {
     return (
       <MuiThemeProvider>
         <div>
-          <AppBar />
-          <Graph />
+          <AppBar title="Synapse" showMenuIconButton={false} />
           <User />
           <Node />
           <Transaction />
+          <Graph />
         </div>
       </MuiThemeProvider>
     )
