@@ -23,9 +23,10 @@
     "jquery": "^3.1.1",
     "material-ui": "^0.20.0",
     "mongoose": "^4.8.6",
-    "react": "^15.4.2",
+    "react": "^15.6.2",
     "react-dom": "^15.4.2",
     "react-easy-chart": "^1.0.0",
+    "react-grid-system": "^3.1.2",
     "synapsepay": "^0.3.0"
   }
 }

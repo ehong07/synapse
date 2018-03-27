@@ -33,8 +33,33 @@ app.post('/node', (req, res) => {
 
 });
 
-app.post('transaction', (req, res) => {
+app.post('/transaction', (req, res) => {
 
+});
+
+app.get('/users', (req, res) => {
+  // console.log('HERE');
+  // res.send();
+  const Users = SynapsePay.Users;
+
+  let options = {
+    ip_address: Helpers.getUserIP(),
+    page: '', //optional
+    per_page: '', //optional
+    query: '' //optional
+  };
+
+  Users.get(
+    client,
+    options,
+    (err, usersResponse) => {
+      if (err) {
+        res.sendStatus(400);
+      } else {
+        res.send(usersResponse.users);
+      }
+    }
+  )
 });
 
 app.get('/transactions', (req, res) => {
