@@ -1,6 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import AppBar from 'material-ui/AppBar';
+import Graph from './components/Graph.jsx';
+import User from './components/User.jsx';
+import Node from './components/Node.jsx';
+import Transaction from './components/Transaction.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -10,9 +16,30 @@ class App extends React.Component {
     }
   }
 
+  componentDidMount() {
+    $.ajax({
+      url: '/transactions',
+      method: 'GET',
+      success: data => {
+        console.log('SUCCESS');
+      },
+      error: err => {
+        console.log('ERROR: ', err);
+      }
+    });
+  }
+
   render () {
     return (
-      <div>Hello World</div>
+      <MuiThemeProvider>
+        <div>
+          <AppBar />
+          <Graph />
+          <User />
+          <Node />
+          <Transaction />
+        </div>
+      </MuiThemeProvider>
     )
   }
 }
