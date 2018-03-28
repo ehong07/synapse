@@ -71,7 +71,7 @@ class Transaction extends React.Component {
       type: this.state.transactionType
     }
     copyState.push(transactionObj);
-    this.props.handleAddTransaction(this.state.transactionAmt, this.state.transactionType);
+    this.props.handleAddTransaction(this.state.transactionAmt, this.state.transactionType, this.state.transactionDate);
     this.setState({
       transactions: copyState
     })

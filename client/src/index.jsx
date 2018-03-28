@@ -23,8 +23,12 @@ class App extends React.Component {
     super(props);
     this.state = {
       selectedIndex: 3,
-      totalSavings: 0,
-      totalExpenses: 0
+      totalSavingsMarch: 0,
+      totalExpensesMarch: 0,
+      totalSavingsApril: 0,
+      totalExpensesApril: 0,
+      totalSavingsMay: 0,
+      totalExpensesMay: 0
     }
     this.handleAddTransaction = this.handleAddTransaction.bind(this);
   }
@@ -49,14 +53,30 @@ class App extends React.Component {
     })
   }
 
-  handleAddTransaction(amt, type) {
-    if (type === 'Income') {
+  handleAddTransaction(amt, type, month) {
+    if (type === 'Income' && month.includes('Mar')) {
       this.setState({
-        totalSavings: this.state.totalSavings + amt
+        totalSavingsMarch: this.state.totalSavingsMarch + amt
       })
-    } else {
+    } else if (type === 'Expense' && month.includes('Mar')) {
       this.setState({
-        totalExpenses: this.state.totalExpenses + amt
+        totalExpensesMarch: this.state.totalExpensesMarch + amt
+      })
+    } else if (type === 'Income' && month.includes('Apr')) {
+      this.setState({
+        totalSavingsApril: this.state.totalSavingsApril + amt
+      })
+    } else if (type === 'Expense' && month.includes('Apr')) {
+      this.setState({
+        totalExpensesApril: this.state.totalExpensesApril + amt
+      })
+    } else if (type === 'Income' && month.includes('May')) {
+      this.setState({
+        totalSavingsMay: this.state.totalSavingsMay + amt
+      })
+    } else if (type === 'Expense' && month.includes('May')) {
+      this.setState({
+        totalExpensesMay: this.state.totalExpensesMay + amt
       })
     }
   }
@@ -86,9 +106,19 @@ class App extends React.Component {
           <br></br>
           <Transaction handleAddTransaction={this.handleAddTransaction} />
           <br></br>
-          <Total savings={this.state.totalSavings} expenses={this.state.totalExpenses} />
+          <Total
+            savings={this.state.totalSavingsMarch + this.state.totalSavingsApril + this.state.totalSavingsMay}
+            expenses={this.state.totalExpensesMarch + this.state.totalExpensesApril + this.state.totalExpensesMay}
+          />
           <br></br>
-          <Graph savings={this.state.totalSavings} expenses={this.state.totalExpenses} />
+          <Graph
+            savingsMarch={this.state.totalSavingsMarch}
+            expensesMarch={this.state.totalExpensesMarch}
+            savingsApril={this.state.totalSavingsApril}
+            expensesApril={this.state.totalExpensesApril}
+            savingsMay={this.state.totalSavingsMay}
+            expensesMay={this.state.totalExpensesMay}
+          />
           <br></br>
           <br></br>
           <Paper zDepth={1} style={{position: 'fixed', bottom: '0', width: '100%'}}>
