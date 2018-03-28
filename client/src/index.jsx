@@ -11,23 +11,23 @@ import Paper from 'material-ui/Paper';
 import {BottomNavigation, BottomNavigationItem} from 'material-ui/BottomNavigation';
 import ActionRestore from 'material-ui/svg-icons/action/restore';
 import ActionFavorite from 'material-ui/svg-icons/action/favorite';
+import ContentSend from 'material-ui/svg-icons/content/send';
 import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
 
 const recentsIcon = <ActionRestore />;
 const favoritesIcon = <ActionFavorite />;
+const transferIcon = <ContentSend />;
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedIndex: 2
+      selectedIndex: 3,
+      transactions: [],
+      totalSavings: 0,
+      totalExpenses: 0
     }
-  }
-
-  select(index) {
-    this.setState({
-      selectedIndex: index
-    })
+    this.handleAddTransaction = this.handleAddTransaction.bind(this);
   }
 
   componentDidMount() {
@@ -41,7 +41,25 @@ class App extends React.Component {
     //     console.log('ERROR: ', err);
     //   }
     // });
-    this.getUsers();
+    // this.getUsers();
+  }
+
+  select(index) {
+    this.setState({
+      selectedIndex: index
+    })
+  }
+
+  handleAddTransaction(amt, type) {
+    if (type === 'Income') {
+      this.setState({
+        totalSavings: this.state.totalSavings + amt
+      })
+    } else {
+      this.setState({
+        totalExpenses: this.state.totalExpenses + amt
+      })
+    }
   }
 
   getUsers() {
@@ -67,17 +85,18 @@ class App extends React.Component {
             <ToolbarTitle text="Transaction Log" />
           </Toolbar>
           <br></br>
-          <Transaction />
+          <Transaction handleAddTransaction={this.handleAddTransaction} />
           <br></br>
-          <Total />
+          <Total savings={this.state.totalSavings} expenses={this.state.totalExpenses} />
           <br></br>
           <br></br>
           <Graph />
           <br></br>
-          <Paper zDepth={1}>
-            <BottomNavigation selectedIndex={this.state.selectedIndex} >
-              <BottomNavigationItem label="Recents" icon={recentsIcon} onClick={() => this.select(0)} />
-              <BottomNavigationItem label="Favorites" icon={favoritesIcon} onClick={() => this.select(1)} />
+          <Paper zDepth={1} style={{position: 'fixed', bottom: '0', width: '100%'}}>
+            <BottomNavigation selectedIndex={this.state.selectedIndex}>
+              <BottomNavigationItem label="Transfer Savings" icon={transferIcon} onClick={() => this.select(0)} />
+              <BottomNavigationItem label="Recents" icon={recentsIcon} onClick={() => this.select(1)} />
+              <BottomNavigationItem label="Favorites" icon={favoritesIcon} onClick={() => this.select(2)} />
             </BottomNavigation>
           </Paper>
         </div>
