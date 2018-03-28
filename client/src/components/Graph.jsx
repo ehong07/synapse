@@ -35,12 +35,12 @@ import {BarChart} from 'react-easy-chart';
 
 const Graph = props => {
   let data = [
-    {x: 'Jan. Savings', y: props.savings},
-    {x: 'Jan. Expenses', y: props.expenses},
-    {x: 'Feb. Savings', y: 0},
-    {x: 'Feb. Expenses', y: 0},
-    {x: 'Mar. Savings', y: 125},
-    {x: 'Mar. Expenses', y: 150},
+    {x: 'March Savings', y: props.savings},
+    {x: 'March Expenses', y: props.expenses},
+    {x: 'April Savings', y: 0},
+    {x: 'April Expenses', y: 0},
+    {x: 'May Savings', y: 0},
+    {x: 'May Expenses', y: 0},
   ];
 
   return (
