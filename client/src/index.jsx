@@ -99,7 +99,7 @@ class App extends React.Component {
     return (
       <MuiThemeProvider>
         <div>
-          <AppBar title="Synapse" showMenuIconButton={false} />
+          <AppBar title="SynapseVI" showMenuIconButton={false} />
           <Toolbar>
             <ToolbarTitle text="Transaction Log" />
           </Toolbar>
