@@ -30,19 +30,19 @@ class App extends React.Component {
     this.handleAddTransaction = this.handleAddTransaction.bind(this);
   }
 
-  componentDidMount() {
-    // $.ajax({
-    //   url: '/transactions',
-    //   method: 'GET',
-    //   success: data => {
-    //     console.log('SUCCESS');
-    //   },
-    //   error: err => {
-    //     console.log('ERROR: ', err);
-    //   }
-    // });
-    // this.getUsers();
-  }
+  // componentDidMount() {
+  //   // $.ajax({
+  //   //   url: '/transactions',
+  //   //   method: 'GET',
+  //   //   success: data => {
+  //   //     console.log('SUCCESS');
+  //   //   },
+  //   //   error: err => {
+  //   //     console.log('ERROR: ', err);
+  //   //   }
+  //   // });
+  //   // this.getUsers();
+  // }
 
   select(index) {
     this.setState({
@@ -62,19 +62,19 @@ class App extends React.Component {
     }
   }
 
-  getUsers() {
-    $.ajax({
-      url: '/users',
-      method: 'GET',
-      success: data => {
-        console.log('GET USERS SUCCESS');
-        console.log('DATA = ', data);
-      },
-      error: err => {
-        console.log('ERROR: ', err);
-      }
-    });
-  }
+  // getUsers() {
+  //   $.ajax({
+  //     url: '/users',
+  //     method: 'GET',
+  //     success: data => {
+  //       console.log('GET USERS SUCCESS');
+  //       console.log('DATA = ', data);
+  //     },
+  //     error: err => {
+  //       console.log('ERROR: ', err);
+  //     }
+  //   });
+  // }
 
   render () {
     return (
@@ -90,7 +90,8 @@ class App extends React.Component {
           <Total savings={this.state.totalSavings} expenses={this.state.totalExpenses} />
           <br></br>
           <br></br>
-          <Graph />
+          <Graph savings={this.state.totalSavings} expenses={this.state.totalExpenses} />
+          <br></br>
           <br></br>
           <Paper zDepth={1} style={{position: 'fixed', bottom: '0', width: '100%'}}>
             <BottomNavigation selectedIndex={this.state.selectedIndex}>

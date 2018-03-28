@@ -10,7 +10,7 @@ class Transaction extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      transactionAmt: 0,
+      transactionAmt: '',
       transactionType: ''
     }
     this.handleTransactionType = this.handleTransactionType.bind(this);
@@ -23,6 +23,13 @@ class Transaction extends React.Component {
   //     value: value
   //   });
   // }
+
+  cleanInput() {
+    this.setState({
+      transactionAmt: '',
+      transactionType: ''
+    })
+  }
 
   handleTransactionType(event, index, value) {
     this.setState({
@@ -38,6 +45,7 @@ class Transaction extends React.Component {
 
   handleAddToTotal() {
     this.props.handleAddTransaction(this.state.transactionAmt, this.state.transactionType);
+    this.cleanInput();
   }
 
   render() {
@@ -51,6 +59,7 @@ class Transaction extends React.Component {
               <TextField
                 hintText="Enter Total Amount (ex. 100)"
                 onChange={this.handleTransactionAmt}
+                value={this.state.transactionAmt}
               />
             </Col>
             <Col md={2}>

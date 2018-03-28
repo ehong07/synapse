@@ -67,7 +67,7 @@ const Total = props => (
     </Row>
     <Row>
       <Col>
-        <div style={{fontSize: '200%', color: 'rgb(0, 188, 212)', marginLeft: '40%'}}>
+        <div style={{fontSize: '200%', color: 'rgb(0, 188, 212)', marginLeft: '41%'}}>
           ${props.savings}
         </div>
       </Col>
