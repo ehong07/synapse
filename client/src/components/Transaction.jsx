@@ -1,4 +1,5 @@
 import React from 'react';
+import TransactionsLog from './TransactionsLog.jsx';
 import DatePicker from 'material-ui/DatePicker';
 import TextField from 'material-ui/TextField';
 import { Container, Row, Col } from 'react-grid-system';
@@ -11,11 +12,16 @@ class Transaction extends React.Component {
     super(props);
     this.state = {
       transactionAmt: '',
-      transactionType: ''
+      transactionType: '',
+      transactionDesc: '',
+      transactionDate: '',
+      transactions: []
     }
     this.handleTransactionType = this.handleTransactionType.bind(this);
     this.handleAddToTotal = this.handleAddToTotal.bind(this);
     this.handleTransactionAmt = this.handleTransactionAmt.bind(this);
+    this.handleTransactionDesc = this.handleTransactionDesc.bind(this);
+    this.handleTransactionDate = this.handleTransactionDate.bind(this);
   }
 
   // handleChange(event, index, value) {
@@ -27,24 +33,42 @@ class Transaction extends React.Component {
   cleanInput() {
     this.setState({
       transactionAmt: '',
-      transactionType: ''
+      transactionType: '',
+      transactionDesc: '',
     })
   }
 
-  handleTransactionType(event, index, value) {
+  handleTransactionDesc(e) {
+    this.setState({
+      transactionDesc: e.target.value
+    })
+  }
+
+  handleTransactionDate(e, value) {
+    this.setState({
+      transactionDate: value.toString().split(' ').slice(1, 4).join(' ')
+    })
+  }
+
+  handleTransactionType(e, index, value) {
     this.setState({
       transactionType: value
     })
   }
 
-  handleTransactionAmt(event) {
+  handleTransactionAmt(e) {
     this.setState({
-      transactionAmt: Number(event.target.value)
+      transactionAmt: Number(e.target.value)
     })
   }
 
   handleAddToTotal() {
+    let copy = this.state.transactions;
+    copy.push([this.state.transactionDate, this.state.transactionDesc, this.state.transactionAmt, this.state.transactionType]);
     this.props.handleAddTransaction(this.state.transactionAmt, this.state.transactionType);
+    this.setState({
+      transactions: copy
+    })
     this.cleanInput();
   }
 
@@ -53,8 +77,21 @@ class Transaction extends React.Component {
       <div>
         <Container>
           <Row>
-            <Col md={3}><DatePicker hintText="Enter Transation Date" mode="landscape" /></Col>
-            <Col md={3}><TextField hintText="Enter Transaction Description" /></Col>
+            <Col md={3}>
+              <DatePicker
+                autoOk
+                hintText="Enter Transaction Date"
+                mode="landscape"
+                onChange={this.handleTransactionDate}
+              />
+            </Col>
+            <Col md={3}>
+              <TextField
+                hintText="Enter Transaction Description"
+                onChange={this.handleTransactionDesc}
+                value={this.state.transactionDesc}
+              />
+            </Col>
             <Col md={3}>
               <TextField
                 hintText="Enter Total Amount (ex. 100)"
@@ -81,6 +118,7 @@ class Transaction extends React.Component {
             </Col>
           </Row>
         </Container>
+        <TransactionsLog transactions={this.state.transactions}/>
       </div>
     )
   }

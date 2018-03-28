@@ -23,7 +23,6 @@ class App extends React.Component {
     super(props);
     this.state = {
       selectedIndex: 3,
-      transactions: [],
       totalSavings: 0,
       totalExpenses: 0
     }
