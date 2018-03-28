@@ -13,16 +13,24 @@ class User extends React.Component {
     return (
       <div>
         <div>
-          <TextField hintText="Name" />
+          <TextField
+            hintText="Name"
+          />
         </div>
         <div>
-          <TextField hintText="Email" />
+          <TextField
+            hintText="Email"
+          />
         </div>
         <div>
-          <TextField hintText="Password" />
+          <TextField
+            hintText="Password"
+          />
         </div>
         <div>
-          <TextField hintText="Phone Number" />
+          <TextField
+            hintText="Phone Number"
+          />
         </div>
       </div>
     )

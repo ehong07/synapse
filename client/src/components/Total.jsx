@@ -11,7 +11,7 @@ const Total = props => (
         <RaisedButton
           label="Total Savings:"
           labelStyle={{fontSize: '125%'}}
-          disabled={true}
+          disabled
           disabledBackgroundColor={'rgb(0, 188, 212)'}
           disabledLabelColor={'white'}
           style={{display: 'flex', justifyContent: 'center'}}
@@ -21,7 +21,7 @@ const Total = props => (
         <RaisedButton
           label="Total Expenses:"
           labelStyle={{fontSize: '125%'}}
-          disabled={true}
+          disabled
           disabledBackgroundColor={'rgb(255, 64, 129)'}
           disabledLabelColor={'white'}
           style={{display: 'flex', justifyContent: 'center'}}
@@ -30,12 +30,16 @@ const Total = props => (
     </Row>
     <Row>
       <Col>
-        <div style={{fontFamily: 'Arial', fontSize: '200%', color: 'rgb(0, 188, 212)', display: 'flex', justifyContent: 'center'}}>
+        <div
+          style={{fontFamily: 'Arial', fontSize: '200%', color: 'rgb(0, 188, 212)', display: 'flex', justifyContent: 'center'}}
+        >
           ${props.savings}
         </div>
       </Col>
       <Col>
-        <div style={{fontFamily: 'Arial', fontSize: '200%', color: 'rgb(255, 64, 129)', display: 'flex', justifyContent: 'center'}}>
+        <div
+          style={{fontFamily: 'Arial', fontSize: '200%', color: 'rgb(255, 64, 129)', display: 'flex', justifyContent: 'center'}}
+        >
           ${props.expenses}
         </div>
       </Col>

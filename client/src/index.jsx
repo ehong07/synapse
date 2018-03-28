@@ -22,7 +22,6 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedIndex: 3,
       totalSavingsMarch: 0,
       totalExpensesMarch: 0,
       totalSavingsApril: 0,
@@ -46,12 +45,6 @@ class App extends React.Component {
   //   // });
   //   // this.getUsers();
   // }
-
-  select(index) {
-    this.setState({
-      selectedIndex: index
-    })
-  }
 
   handleAddTransaction(amt, type, month) {
     if (type === 'Income' && month.includes('Mar')) {
@@ -81,6 +74,8 @@ class App extends React.Component {
     }
   }
 
+  // handleTransferSavings
+
   // getUsers() {
   //   $.ajax({
   //     url: '/users',
@@ -95,16 +90,23 @@ class App extends React.Component {
   //   });
   // }
 
-  render () {
+  render() {
     return (
       <MuiThemeProvider>
         <div>
-          <AppBar title="SynapseVI" showMenuIconButton={false} />
+          <AppBar
+            title="SynapseVI"
+            showMenuIconButton={false}
+          />
           <Toolbar>
-            <ToolbarTitle text="Transaction Log" />
+            <ToolbarTitle
+              text="Transaction Log"
+            />
           </Toolbar>
           <br></br>
-          <Transaction handleAddTransaction={this.handleAddTransaction} />
+          <Transaction
+            handleAddTransaction={this.handleAddTransaction}
+          />
           <br></br>
           <Total
             savings={this.state.totalSavingsMarch + this.state.totalSavingsApril + this.state.totalSavingsMay}
@@ -121,11 +123,26 @@ class App extends React.Component {
           />
           <br></br>
           <br></br>
-          <Paper zDepth={1} style={{position: 'fixed', bottom: '0', width: '100%'}}>
-            <BottomNavigation selectedIndex={this.state.selectedIndex}>
-              <BottomNavigationItem label="Transfer Savings" icon={transferIcon} onClick={() => this.select(0)} />
-              <BottomNavigationItem label="Recents" icon={recentsIcon} onClick={() => this.select(1)} />
-              <BottomNavigationItem label="Favorites" icon={favoritesIcon} onClick={() => this.select(2)} />
+          <Paper
+            zDepth={1}
+            style={{position: 'fixed', bottom: '0', width: '100%'}}
+          >
+            <BottomNavigation
+              selectedIndex={this.state.selectedIndex}
+            >
+              <BottomNavigationItem
+                label="Transfer Savings"
+                icon={transferIcon}
+                onClick={this.handleTransferSavings}
+              />
+              <BottomNavigationItem
+                label="Recents"
+                icon={recentsIcon}
+              />
+              <BottomNavigationItem
+                label="Favorites"
+                icon={favoritesIcon}
+              />
             </BottomNavigation>
           </Paper>
         </div>

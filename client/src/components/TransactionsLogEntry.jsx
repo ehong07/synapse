@@ -7,10 +7,26 @@ const TransactionsLogEntry = props => (
     <Table>
       <TableBody>
         <TableRow>
-          <TableRowColumn style={{fontSize: '90%'}}>{props.transaction.date}</TableRowColumn>
-          <TableRowColumn style={{fontSize: '90%'}}>{props.transaction.desc}</TableRowColumn>
-          <TableRowColumn style={{fontSize: '90%'}}>{props.transaction.amt}</TableRowColumn>
-          <TableRowColumn style={{fontSize: '90%'}}>{props.transaction.type}</TableRowColumn>
+          <TableRowColumn
+            style={{fontSize: '90%'}}
+          >
+            {props.transaction.date}
+          </TableRowColumn>
+          <TableRowColumn
+            style={{fontSize: '90%'}}
+          >
+            {props.transaction.desc}
+          </TableRowColumn>
+          <TableRowColumn
+            style={{fontSize: '90%'}}
+          >
+            {props.transaction.amt}
+          </TableRowColumn>
+          <TableRowColumn
+            style={{fontSize: '90%'}}
+          >
+            {props.transaction.type}
+          </TableRowColumn>
         </TableRow>
       </TableBody>
     </Table>

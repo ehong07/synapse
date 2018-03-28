@@ -105,8 +105,14 @@ class Transaction extends React.Component {
                 onChange={this.handleTransactionType}
                 hintText="Income or Expense"
               >
-                <MenuItem value={"Income"} primaryText="Income"></MenuItem>
-                <MenuItem value={"Expense"} primaryText="Expense"></MenuItem>
+                <MenuItem
+                  value={"Income"}
+                  primaryText="Income">
+                </MenuItem>
+                <MenuItem
+                  value={"Expense"}
+                  primaryText="Expense">
+                </MenuItem>
               </SelectField>
             </Col>
             <Col md={1}>
@@ -118,7 +124,9 @@ class Transaction extends React.Component {
             </Col>
           </Row>
         </Container>
-        <TransactionsLog transactions={this.state.transactions}/>
+        <TransactionsLog
+          transactions={this.state.transactions}
+        />
       </div>
     )
   }

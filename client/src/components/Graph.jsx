@@ -12,7 +12,9 @@ const Graph = props => {
   ];
 
   return (
-    <div style={{display: 'flex', justifyContent: 'center'}}>
+    <div
+      style={{display: 'flex', justifyContent: 'center'}}
+    >
       <BarChart
         height={500}
         width={750}
