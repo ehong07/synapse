@@ -73,6 +73,7 @@ class App extends React.Component {
           <br></br>
           <br></br>
           <Graph />
+          <br></br>
           <Paper zDepth={1}>
             <BottomNavigation selectedIndex={this.state.selectedIndex} >
               <BottomNavigationItem label="Recents" icon={recentsIcon} onClick={() => this.select(0)} />

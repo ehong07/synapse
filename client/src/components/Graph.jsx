@@ -11,9 +11,9 @@ class Graph extends React.Component {
 
   render() {
     return (
-      <div>
+      <div style={{display: 'flex', justifyContent: 'center'}}>
         <BarChart
-          colorBars 
+          colorBars
           data={[
             {x: 'A', y: 20},
             {x: 'B', y: 30},
