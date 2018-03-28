@@ -51,7 +51,7 @@ const Total = props => (
           disabled={true}
           disabledBackgroundColor={'rgb(0, 188, 212)'}
           disabledLabelColor={'white'}
-          style={{marginLeft: '30%'}}
+          style={{display: 'flex', justifyContent: 'center'}}
         />
       </Col>
       <Col>
@@ -61,18 +61,18 @@ const Total = props => (
           disabled={true}
           disabledBackgroundColor={'rgb(255, 64, 129)'}
           disabledLabelColor={'white'}
-          style={{marginLeft: '20%'}}
+          style={{display: 'flex', justifyContent: 'center'}}
         />
       </Col>
     </Row>
     <Row>
       <Col>
-        <div style={{fontSize: '200%', color: 'rgb(0, 188, 212)', marginLeft: '41%'}}>
+        <div style={{fontFamily: 'Arial', fontSize: '200%', color: 'rgb(0, 188, 212)', display: 'flex', justifyContent: 'center'}}>
           ${props.savings}
         </div>
       </Col>
       <Col>
-        <div style={{fontSize: '200%', color: 'rgb(255, 64, 129)', marginLeft: '33%'}}>
+        <div style={{fontFamily: 'Arial', fontSize: '200%', color: 'rgb(255, 64, 129)', display: 'flex', justifyContent: 'center'}}>
           ${props.expenses}
         </div>
       </Col>

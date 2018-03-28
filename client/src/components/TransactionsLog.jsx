@@ -3,9 +3,7 @@ import TransactionsLogEntry from './TransactionsLogEntry.jsx';
 
 const TransactionsLog = props => (
   <div>
-    <div>TransactionsLog is here</div>
-    {props.transactions}
-    <TransactionsLogEntry />
+    {props.transactions.map((transaction, key) => <TransactionsLogEntry transaction={transaction} key={key}/>)}
   </div>
 )
 

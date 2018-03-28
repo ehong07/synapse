@@ -63,11 +63,17 @@ class Transaction extends React.Component {
   }
 
   handleAddToTotal() {
-    let copy = this.state.transactions;
-    copy.push([this.state.transactionDate, this.state.transactionDesc, this.state.transactionAmt, this.state.transactionType]);
+    let copyState = this.state.transactions;
+    let transactionObj = {
+      date: this.state.transactionDate,
+      desc: this.state.transactionDesc,
+      amt: this.state.transactionAmt,
+      type: this.state.transactionType
+    }
+    copyState.push(transactionObj);
     this.props.handleAddTransaction(this.state.transactionAmt, this.state.transactionType);
     this.setState({
-      transactions: copy
+      transactions: copyState
     })
     this.cleanInput();
   }

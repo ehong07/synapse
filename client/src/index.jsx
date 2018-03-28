@@ -88,7 +88,6 @@ class App extends React.Component {
           <br></br>
           <Total savings={this.state.totalSavings} expenses={this.state.totalExpenses} />
           <br></br>
-          <br></br>
           <Graph savings={this.state.totalSavings} expenses={this.state.totalExpenses} />
           <br></br>
           <br></br>
