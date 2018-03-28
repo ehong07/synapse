@@ -1,30 +1,6 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-grid-system';
 import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
-// import Divider from 'material-ui/Divider';
-
-// const TransactionsLogEntry = props => (
-//   <div>
-//     <Divider />
-//     <Container>
-//       <Row>
-//         <Col>
-//           {props.transaction.date}
-//         </Col>
-//         <Col>
-//           {props.transaction.desc}
-//         </Col>
-//         <Col>
-//           {props.transaction.amt}
-//         </Col>
-//         <Col>
-//           {props.transaction.type}
-//         </Col>
-//       </Row>
-//     </Container>
-//     <Divider />
-//   </div>
-// )
 
 const TransactionsLogEntry = props => (
   <div>

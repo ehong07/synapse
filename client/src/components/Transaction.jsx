@@ -24,12 +24,6 @@ class Transaction extends React.Component {
     this.handleTransactionDate = this.handleTransactionDate.bind(this);
   }
 
-  // handleChange(event, index, value) {
-  //   this.setState({
-  //     value: value
-  //   });
-  // }
-
   cleanInput() {
     this.setState({
       transactionAmt: '',
