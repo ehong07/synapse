@@ -63,7 +63,9 @@ app.post('/createUser', (req, res) => {
       // error or user object
       user = userResponse;
       if (err) {
-        res.sendStatus(400)
+        res.status(400).send(err);
+      } else {
+        res.status(201).send(userResponse);
       }
     }
   );
@@ -96,7 +98,9 @@ app.post('/createNode', (req, res) => {
       // node will only have RECEIVE permission until verified with micro-deposits
       nodes = nodesResponse;
       if (err) {
-        res.sendStatus(400)
+        res.status(400).send(err);
+      } else {
+        res.status(201).send(nodesResponse);
       }
     }
   );
@@ -108,18 +112,14 @@ app.post('/transferSavings', (req, res) => {
   // Create a Transaction
   const createTransactionPayload = {
     to: {
-      type: 'PERSONAL',
+      type: 'ACH-US',
       id: nodes[0].json._id
     },
     amount: {
-      amount: Number(req.body.totalSavings),
+      amount: req.body.totalSavings,
       currency: 'USD'
     },
     extra: {
-      supp_id: '1283764wqwsdd34wd13212',
-      note: 'Deposit to bank account',
-      webhook: 'http://requestb.in/q94kxtq9',
-      process_on: 1,
       ip: Helpers.getUserIP()
     }
   };
@@ -131,54 +131,13 @@ app.post('/transferSavings', (req, res) => {
       // error or transaction object
       transaction = transactionResp;
       if (err) {
-        res.sendStatus(400)
+        console.log(err.response.text)
+        res.status(400).send(err);
+      } else {
+        res.status(201).send(transactionResp)
       }
     }
   );
-});
-
-app.get('/users', (req, res) => {
-  // console.log('HERE');
-  // res.send();
-  const Users = SynapsePay.Users;
-
-  let options = {
-    ip_address: Helpers.getUserIP(),
-    page: '', //optional
-    per_page: '', //optional
-    query: '' //optional
-  };
-
-  Users.get(
-    client,
-    options,
-    (err, usersResponse) => {
-      if (err) {
-        res.sendStatus(400);
-      } else {
-        res.send(usersResponse.users);
-      }
-    }
-  )
-});
-
-app.get('/transactions', (req, res) => {
-  console.log('WE MADE IT');
-  // const Transactions = SynapsePay.Transactions;
-  // let transactions;
-  // Transactions.get(
-  //   node,
-  //   null,
-  //   (err, transactionsResp) => {
-  //     if (err) {
-  //       res.sendStatus(400);
-  //     } else {
-  //       transactions = transactionsResp;
-  //     }
-  //   }
-  // )
-  // res.json(transactions);
-  res.send();
 });
 
 app.listen(8000, () => {

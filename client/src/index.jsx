@@ -33,19 +33,36 @@ class App extends React.Component {
     this.handleTransferSavings = this.handleTransferSavings.bind(this);
   }
 
-  // componentDidMount() {
-  //   // $.ajax({
-  //   //   url: '/transactions',
-  //   //   method: 'GET',
-  //   //   success: data => {
-  //   //     console.log('SUCCESS');
-  //   //   },
-  //   //   error: err => {
-  //   //     console.log('ERROR: ', err);
-  //   //   }
-  //   // });
-  //   // this.getUsers();
-  // }
+  componentDidMount() {
+    this.handleAddUser();
+  }
+
+  handleAddUser() {
+    $.ajax({
+      url: '/createUser',
+      method: 'POST',
+      success: () => {
+        console.log('ADD USER SUCCESS');
+        this.handleAddNode();
+      },
+      error: err => {
+        console.log('ADD USER ERROR: ' + err);
+      }
+    })
+  }
+
+  handleAddNode() {
+    $.ajax({
+      url: '/createNode',
+      method: 'POST',
+      success: () => {
+        console.log('ADD NODE SUCCESS');
+      },
+      error: err => {
+        console.log('ADD NODE ERROR: ' + err);
+      }
+    })
+  }
 
   handleAddTransaction(amt, type, month) {
     if (type === 'Income' && month.includes('Mar')) {
@@ -85,26 +102,17 @@ class App extends React.Component {
       data: JSON.stringify({totalSavings}),
       success: () => {
         console.log('TRANSFER SAVINGS SUCCESS');
+        this.setState({
+          totalSavingsMarch: 0,
+          totalSavingsApril: 0,
+          totalSavingsMay: 0
+        })
       },
       error: err => {
         console.log('TRANSFER SAVINGS ERROR: ' + err);
       }
     })
   }
-
-  // getUsers() {
-  //   $.ajax({
-  //     url: '/users',
-  //     method: 'GET',
-  //     success: data => {
-  //       console.log('GET USERS SUCCESS');
-  //       console.log('DATA = ', data);
-  //     },
-  //     error: err => {
-  //       console.log('ERROR: ', err);
-  //     }
-  //   });
-  // }
 
   render() {
     return (
