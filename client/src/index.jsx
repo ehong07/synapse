@@ -44,53 +44,43 @@ class App extends React.Component {
       url: '/createUser',
       method: 'POST',
       success: () => {
-        console.log('ADD USER SUCCESS');
         this.handleAddNode();
-      },
-      error: err => {
-        console.log('ADD USER ERROR: ' + err);
       }
-    })
+    });
   }
 
   handleAddNode() {
     $.ajax({
       url: '/createNode',
       method: 'POST',
-      success: () => {
-        console.log('ADD NODE SUCCESS');
-      },
-      error: err => {
-        console.log('ADD NODE ERROR: ' + err);
-      }
-    })
+    });
   }
 
   handleAddTransaction(amt, type, month) {
     if (type === 'Income' && month.includes('Mar')) {
       this.setState({
         totalSavingsMarch: this.state.totalSavingsMarch + amt
-      })
+      });
     } else if (type === 'Expense' && month.includes('Mar')) {
       this.setState({
         totalExpensesMarch: this.state.totalExpensesMarch + amt
-      })
+      });
     } else if (type === 'Income' && month.includes('Apr')) {
       this.setState({
         totalSavingsApril: this.state.totalSavingsApril + amt
-      })
+      });
     } else if (type === 'Expense' && month.includes('Apr')) {
       this.setState({
         totalExpensesApril: this.state.totalExpensesApril + amt
-      })
+      });
     } else if (type === 'Income' && month.includes('May')) {
       this.setState({
         totalSavingsMay: this.state.totalSavingsMay + amt
-      })
+      });
     } else if (type === 'Expense' && month.includes('May')) {
       this.setState({
         totalExpensesMay: this.state.totalExpensesMay + amt
-      })
+      });
     }
   }
 
@@ -103,22 +93,18 @@ class App extends React.Component {
       contentType: 'application/json',
       data: JSON.stringify({totalSavings}),
       success: () => {
-        console.log('TRANSFER SAVINGS SUCCESS');
         this.setState({
           totalSavingsMarch: 0,
           totalSavingsApril: 0,
           totalSavingsMay: 0,
-        })
+        });
         setTimeout(() => { this.setState({snackOpen: false}) }, 3000);
-      },
-      error: err => {
-        console.log('TRANSFER SAVINGS ERROR: ' + err);
       }
-    })
+    });
 
     this.setState({
       snackOpen: true
-    })
+    });
   }
 
   render() {

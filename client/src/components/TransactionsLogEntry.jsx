@@ -31,6 +31,6 @@ const TransactionsLogEntry = props => (
       </TableBody>
     </Table>
   </div>
-)
+);
 
 export default TransactionsLogEntry

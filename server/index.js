@@ -63,7 +63,7 @@ app.post('/createUser', (req, res) => {
       }
     }
   );
-})
+});
 
 app.post('/createNode', (req, res) => {
   const Nodes = SynapsePay.Nodes;
@@ -95,7 +95,7 @@ app.post('/createNode', (req, res) => {
       }
     }
   );
-})
+});
 
 app.post('/transferSavings', (req, res) => {
   const Transactions = SynapsePay.Transactions;

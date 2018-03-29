@@ -29,31 +29,31 @@ class Transaction extends React.Component {
       transactionAmt: '',
       transactionType: '',
       transactionDesc: '',
-    })
+    });
   }
 
   handleTransactionDesc(e) {
     this.setState({
       transactionDesc: e.target.value
-    })
+    });
   }
 
   handleTransactionDate(e, value) {
     this.setState({
       transactionDate: value.toString().split(' ').slice(1, 4).join(' ')
-    })
+    });
   }
 
   handleTransactionType(e, index, value) {
     this.setState({
       transactionType: value
-    })
+    });
   }
 
   handleTransactionAmt(e) {
     this.setState({
       transactionAmt: Number(e.target.value)
-    })
+    });
   }
 
   handleAddToTotal() {
@@ -63,12 +63,12 @@ class Transaction extends React.Component {
       desc: this.state.transactionDesc,
       amt: this.state.transactionAmt,
       type: this.state.transactionType
-    }
+    };
     copyState.push(transactionObj);
     this.props.handleAddTransaction(this.state.transactionAmt, this.state.transactionType, this.state.transactionDate);
     this.setState({
       transactions: copyState
-    })
+    });
     this.cleanInput();
   }
 

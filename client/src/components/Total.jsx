@@ -45,6 +45,6 @@ const Total = props => (
       </Col>
     </Row>
   </Container>
-)
+);
 
 export default Total;

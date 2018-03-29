@@ -24,6 +24,6 @@ const Graph = props => {
       />
     </div>
   )
-}
+};
 
 export default Graph;
