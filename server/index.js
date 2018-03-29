@@ -17,11 +17,8 @@ const Clients = SynapsePay.Clients;
 const Helpers = SynapsePay.Helpers;
 
 const client = new Clients(
-  // client id should be stored as an environment variable
   process.env.CLIENT_ID,
-  // client secret should be stored as an environment variable
   process.env.CLIENT_SECRET,
-  // is_production boolean determines sandbox or production endpoints used
   false
 );
 
@@ -32,7 +29,6 @@ let transaction;
 app.post('/createUser', (req, res) => {
   const Users = SynapsePay.Users;
 
-  // Create a User
   const createPayload = {
     logins: [
       {
@@ -55,17 +51,15 @@ app.post('/createUser', (req, res) => {
 
   Users.create(
     client,
-    // fingerprint (specific to user or static for application)
     process.env.FINGERPRINT,
     Helpers.getUserIP(),
     createPayload,
     (err, userResponse) => {
-      // error or user object
       user = userResponse;
       if (err) {
-        res.status(400).send(err);
+        res.sendStatus(400);
       } else {
-        res.status(201).send(userResponse);
+        res.sendStatus(201);
       }
     }
   );
@@ -74,7 +68,6 @@ app.post('/createUser', (req, res) => {
 app.post('/createNode', (req, res) => {
   const Nodes = SynapsePay.Nodes;
 
-  // Add ACH-US Node through Account and Routing Number Details
   const achPayload = {
     type: 'ACH-US',
     info: {
@@ -94,13 +87,11 @@ app.post('/createNode', (req, res) => {
     user,
     achPayload,
     (err, nodesResponse) => {
-      // error or node object
-      // node will only have RECEIVE permission until verified with micro-deposits
       nodes = nodesResponse;
       if (err) {
-        res.status(400).send(err);
+        res.sendStatus(400);
       } else {
-        res.status(201).send(nodesResponse);
+        res.sendStatus(201);
       }
     }
   );
@@ -109,7 +100,6 @@ app.post('/createNode', (req, res) => {
 app.post('/transferSavings', (req, res) => {
   const Transactions = SynapsePay.Transactions;
 
-  // Create a Transaction
   const createTransactionPayload = {
     to: {
       type: 'ACH-US',
@@ -128,13 +118,11 @@ app.post('/transferSavings', (req, res) => {
     nodes[0],
     createTransactionPayload,
     (err, transactionResp) => {
-      // error or transaction object
       transaction = transactionResp;
       if (err) {
-        console.log(err.response.text)
-        res.status(400).send(err);
+        res.sendStatus(400);
       } else {
-        res.status(201).send(transactionResp)
+        res.sendStatus(201);
       }
     }
   );

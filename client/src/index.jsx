@@ -13,6 +13,7 @@ import ActionRestore from 'material-ui/svg-icons/action/restore';
 import ActionFavorite from 'material-ui/svg-icons/action/favorite';
 import ContentSend from 'material-ui/svg-icons/content/send';
 import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
+import Snackbar from 'material-ui/Snackbar';
 
 const recentsIcon = <ActionRestore />;
 const favoritesIcon = <ActionFavorite />;
@@ -27,7 +28,8 @@ class App extends React.Component {
       totalSavingsApril: 0,
       totalExpensesApril: 0,
       totalSavingsMay: 0,
-      totalExpensesMay: 0
+      totalExpensesMay: 0,
+      snackOpen: false
     }
     this.handleAddTransaction = this.handleAddTransaction.bind(this);
     this.handleTransferSavings = this.handleTransferSavings.bind(this);
@@ -105,12 +107,17 @@ class App extends React.Component {
         this.setState({
           totalSavingsMarch: 0,
           totalSavingsApril: 0,
-          totalSavingsMay: 0
+          totalSavingsMay: 0,
         })
+        setTimeout(() => { this.setState({snackOpen: false}) }, 3000);
       },
       error: err => {
         console.log('TRANSFER SAVINGS ERROR: ' + err);
       }
+    })
+
+    this.setState({
+      snackOpen: true
     })
   }
 
@@ -158,6 +165,10 @@ class App extends React.Component {
                 label="Transfer Savings"
                 icon={transferIcon}
                 onClick={this.handleTransferSavings}
+              />
+              <Snackbar
+                open={this.state.snackOpen}
+                message="Savings added to your account!"
               />
               <BottomNavigationItem
                 label="Recents"
