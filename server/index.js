@@ -1,6 +1,5 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const db = require('../db');
 const dotenv = require('dotenv');
 const SynapsePay = require('synapsepay');
 
