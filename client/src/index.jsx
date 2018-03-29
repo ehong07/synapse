@@ -30,6 +30,7 @@ class App extends React.Component {
       totalExpensesMay: 0
     }
     this.handleAddTransaction = this.handleAddTransaction.bind(this);
+    this.handleTransferSavings = this.handleTransferSavings.bind(this);
   }
 
   // componentDidMount() {
@@ -74,7 +75,22 @@ class App extends React.Component {
     }
   }
 
-  // handleTransferSavings
+  handleTransferSavings() {
+    let totalSavings = this.state.totalSavingsMarch + this.state.totalSavingsApril + this.state.totalSavingsMay;
+
+    $.ajax({
+      url: '/transferSavings',
+      method: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify({totalSavings}),
+      success: () => {
+        console.log('TRANSFER SAVINGS SUCCESS');
+      },
+      error: err => {
+        console.log('TRANSFER SAVINGS ERROR: ' + err);
+      }
+    })
+  }
 
   // getUsers() {
   //   $.ajax({
